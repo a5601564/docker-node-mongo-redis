@@ -21,6 +21,7 @@ services:
     image: redis:3.2-alpine
     networks:
       - backend
+    restart: always
     volumes:
       - redis:/data/
     logging:
@@ -30,6 +31,7 @@ services:
         max-file: "3"
     ports:
       - "6379:6379"
+    command: redis-server --appendonly no
 
 networks:
   backend:
