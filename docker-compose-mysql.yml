@@ -1,42 +1,32 @@
-# Node, Mongo, Redis, Nginx
-# Minh Chu <scsilver94@gmail.com>
-
-version: "2"
+version: '3'
 services:
-  mongo-container:
-    restart: always
-    image: mongo:3.4
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    volumes:
-      - "/data/mongo:/data/db"
-    command: mongod
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100MB"
-        max-file: "3"
+    db:
+        #构建mysql镜像
+        image: mysql:8.0                   # 指定镜像和版本
+        container_name: mysql-db # 容器名
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: 5601564a #root管理员用户密码
+          MYSQL_USER: test   #创建test用户
+          MYSQL_PASSWORD: test  #设置test用户的密码
+        ports:
+          - '3306:3306'  #host物理直接映射端口为6606
+        volumes:
+            #mysql数据库挂载到host物理机目录/e/docker/mysql/data/db
+          - "/e/docker/mysql/data/db:/var/lib/mysql"  
+            #容器的配置目录挂载到host物理机目录/e/docker/mysql/data/conf  
+          - "/e/docker/mysql/data/conf:/etc/mysql/conf.d"
+        logging:
+          driver: "json-file"
+          options:
+            max-size: "100MB"
+            max-file: "3"
+        mem_limit: 200m  #最大内存使用不超过1024m
 
-  redis:
-    image: redis:3.2-alpine
-    networks:
-      - backend
-    restart: always
-    volumes:
-      - redis:/data/
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100MB"
-        max-file: "3"
-    ports:
-      - "6379:6379"
-    command: redis-server --appendonly no
-
-networks:
-  backend:
-
-volumes:
-  mongodb:
-  redis:
+        command:
+          # 设置数据库的编码
+          --character-set-server=utf8mb4
+          # 设置数据库默认的排序方式
+          --collation-server=utf8mb4_general_ci
+          # Linux  表名区分大小写   1 表示不区分大小写
+          --lower_case_table_names=1
