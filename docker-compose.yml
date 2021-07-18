@@ -9,8 +9,6 @@ services:
     container_name: mongodb
     ports:
       - "27017:27017"
-    volumes:
-      - "/data/mongo:/data/db"
     command: mongod
     logging:
       driver: "json-file"
@@ -24,8 +22,6 @@ services:
     networks:
       - backend
     restart: always
-    volumes:
-      - redis:/data/
     logging:
       driver: "json-file"
       options:

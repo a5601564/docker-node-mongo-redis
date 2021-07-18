@@ -11,7 +11,7 @@ services:
     environment:
       # root 密码
       MYSQL_ROOT_PASSWORD: 5601564a
-     
+    mem_limit: 1024m  #最大内存使用不超过1024m
     ports:
       - 3306:3306
     volumes:
@@ -28,3 +28,4 @@ services:
       --collation-server=utf8mb4_general_ci
       --explicit_defaults_for_timestamp=true
       --lower_case_table_names=1
+    
