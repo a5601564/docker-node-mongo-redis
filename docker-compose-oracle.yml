@@ -1,0 +1,14 @@
+version: '2'
+services:
+  oracle11g:
+    image:  truevoly/oracle-12c
+    environment:
+      DBCA_TOTAL_MEMORY: 16192
+    ports:
+      - "3022:22" 
+      - "31521:1521" # 绑定容器的1521端口到主机的31521端口
+    restart:
+      always
+networks:
+  oracle11gnetwork:
+    driver: 'local'

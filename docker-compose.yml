@@ -29,7 +29,7 @@ services:
         max-file: "3"
     ports:
       - "6379:6379"
-    command: redis-server --appendonly no
+    command: redis-server --appendonly no --requirepass "5601564a"
     mem_limit: 200m  #最大内存使用不超过1024m
 
 networks:
