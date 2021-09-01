@@ -1,0 +1,11 @@
+portia:
+  image: vimagick/portia
+  container_name: portia
+  ports:
+    - "19001:9001"
+  volumes:
+    - /c/docker_data/portia:/app/slyd/data
+  restart: always
+
+
+docker run -d -v /c/docker_data/portia:/app/slyd/data:rw -p 19001:9001 --name portia-2.0.5 scrapinghub/portia:portia-2.0.5
