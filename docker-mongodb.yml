@@ -1,0 +1,15 @@
+version: "2"
+services:
+  mongo-container:
+    restart: always
+    image: mongo:3.4
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    command: mongod
+    logging:
+      driver: "json-file"
+    volumes: 
+      - C:\docker_data\mongo_data:/data
+      - C:\docker_data\mongo_data\mnt:/mnt
+    mem_limit: 200m  #最大内存使用不超过1024m

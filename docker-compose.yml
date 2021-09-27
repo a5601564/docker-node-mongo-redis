@@ -15,6 +15,9 @@ services:
       options:
         max-size: "100MB"
         max-file: "3"
+    volumes: 
+      - C:\docker_data\mongo_data:/data
+      - C:\docker_data\mongo_data\mnt:/mnt
     mem_limit: 200m  #最大内存使用不超过1024m
 
   redis:
@@ -29,6 +32,9 @@ services:
         max-file: "3"
     ports:
       - "6379:6379"
+    volumes: 
+    - C:\docker_data\redis_data:/data
+    - C:\docker_data\redis_data\mnt:/mnt
     command: redis-server --appendonly no --requirepass "5601564a"
     mem_limit: 200m  #最大内存使用不超过1024m
 
