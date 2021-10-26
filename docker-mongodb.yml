@@ -12,4 +12,17 @@ services:
     volumes: 
       - C:\docker_data\mongo_data:/data
       - C:\docker_data\mongo_data\mnt:/mnt
-    mem_limit: 200m  #最大内存使用不超过1024m
+    # mem_limit: 200m  #最大内存使用不超过1024m
+
+  # mongo-container-2:
+  #   restart: always
+  #   image: mongo:4.4
+  #   container_name: mongodb-2
+  #   ports:
+  #     - "27018:27017"
+  #   command: mongod
+  #   logging:
+  #     driver: "json-file"
+  #   volumes: 
+  #     - C:\docker_data\mongo_data_2:/data
+  #     - C:\docker_data\mongo_data_2\mnt:/mnt
