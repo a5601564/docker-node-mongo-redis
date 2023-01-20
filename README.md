@@ -47,3 +47,6 @@ curl http://localhost:6800/cancel.json -d project=myspider -d job=tencent （终
 
 
 docker-compose up --build -d
+
+
+mongodump --db ba_stock --out /mnt
