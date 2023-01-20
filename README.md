@@ -51,3 +51,10 @@ docker-compose up --build -d
 
 mongodump --db ba_stock --out /mnt
 mongodump --db ba_stock --out /mnt/back_up --collection summo
+
+###批量更新
+
+db.getCollection('summo').find({"is_new": {$regex:/中古/} }   ).forEach(
+function(item){
+	db.getCollection("summo").update({'_id':item._id},{$set:{'is_new':'中古'}})
+})
