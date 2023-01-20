@@ -1,11 +1,13 @@
+version: "3"
+
 services:
   web:
     image: 'gitlab/gitlab-ce:latest'
     container_name: gitlab
     ports:
-      - '10080:10080'
-      - '10443:443'
-      - '10022:22'
+      - '12080:80'
+      - '12443:443'
+      - '12022:22'
     volumes:
       - '/C/docker_data/gitlab/srv/gitlab/config:/etc/gitlab'
       - '/C/docker_data/gitlab/srv/gitlab/logs:/var/log/gitlab'
