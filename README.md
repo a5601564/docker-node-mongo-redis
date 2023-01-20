@@ -50,3 +50,4 @@ docker-compose up --build -d
 
 
 mongodump --db ba_stock --out /mnt
+mongodump --db ba_stock --out /mnt/back_up --collection summo
